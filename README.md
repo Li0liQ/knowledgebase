@@ -19,7 +19,7 @@ mstsc/v:server-tdc /console
 ```
 ###### Get current folder
 ```cmd
-mstsc/v:server-tdc /console
+%cd%
 ```
 ## Javascript
 ###### OP-style Inheritance
@@ -241,4 +241,134 @@ SELECT @p=10
 SELECT TOP(@p) *
 FROM HumanResources.Employee;
 GO
+```
+## Regex
+###### Any char including multiline
+Should use
+```regex
+\s\S
+```
+instead of 
+```regex
+(.|[\r\n])
+```
+###### Any char including multiline
+Non-greedy quantifier(?)
+```regex
+<test>.*?</test>
+```
+will match first tag instead of the whole paragraph in
+```
+<test>12345</test><test>2</test><test>3</test>
+```
+## Unix
+###### delete a folder with subfolders
+```bash
+rm -rf folder_name
+```
+###### delete symlink
+```bash
+rm linkname
+```
+or
+```bash
+unlink linkname
+```
+###### list folder info
+```bash
+ls -la /var/lib/tomcat7/webapps/ 
+```
+###### Kill ethernet connection
+```bash
+ifconfig eth1 down
+```
+## Git
+###### Clone specific branch
+```bash
+git clone -b my-branch git@github.com:user/myproject.git
+```
+###### If you don't care about any local changes and just want a copy from the repo
+```bash
+git reset --hard HEAD
+git pull
+```
+###### Remove local changes
+```bash
+git stash save --keep-index
+git stash drop
+```
+###### Create a new branch
+```bash
+git checkout -b feature-branch-name source_branch_name
+```
+###### Push newly created branch to origin
+```bash
+git push -u origin feature-branch-name
+```
+###### Push changes to a remote repo
+```bash
+git push origin CORE-734_second_attempt
+```
+###### Staging
+```bash
+git status
+git add <some-file>
+git commit
+```
+###### Stage all pending changes
+```bash
+git add .
+```
+###### Retrieve and switch to a remote branch. Get latest changes.
+```bash
+git fetch && git checkout CORE-723-incorrect-handling-of-enable_websso
+git pull
+```
+###### Make git ignore "x" file permissions bit
+```bash
+git config core.filemode false
+```
+###### See modifications
+```bash
+git diff file_path
+```
+###### Revert to previous commit. Works with local commits.
+```bash
+git reset --hard
+```
+###### Merge
+```bash
+git checkout master
+git merge feature_branch_name
+// fix all the merge conflicts
+git add .
+// use default message for commit - it's good enough
+git commit
+git push origin master
+```
+###### Revert file changes.
+```bash
+git checkout filename
+```
+###### Get latest changes and preserve current work.
+```bash
+git stash
+git pull
+git stash pop
+```
+###### Unstage a file.
+```bash
+git reset fil_name
+```
+###### If you screwed to push changes, create a separate branch, create a pull request from it. For existing branch do.
+```bash
+git reset --hard commit_id
+```
+###### Remove local copies of no longer existing remote branches
+```bash
+git remote prune origin
+```
+###### Remove local(not remote) branch
+```bash
+git branch -d the_local_branch
 ```
