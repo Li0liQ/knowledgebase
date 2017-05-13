@@ -371,4 +371,9 @@ git remote prune origin
 ###### Remove local(not remote) branch
 ```bash
 git branch -d the_local_branch
+
+```
+###### Tag a commit
+```bash
+git tag -a <tag-name> -m <message> <commit-hash>
 ```
